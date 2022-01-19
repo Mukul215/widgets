@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 
 const Accordion = ({ items }) => {
-  const [activeItem, setActiveItem] = useState(true);
-  console.log(activeItem);
+  const [activeItem, setActiveItem] = useState(0);
 
-  const showDetail = () => {
-    setActiveItem((prevItem) => !prevItem);
+  const onTitleClicked = (index) => {
+    setActiveItem((prevIndex) => (index === prevIndex ? -1 : index));
   };
 
   return (
-    <div className="flex flex-col">
-      {items.map((item) => (
+    <div className="flex flex-col w-1/2">
+      {items.map((item, index) => (
         <React.Fragment key={item.id}>
           <section className="border-b rounded" key={item.title}>
             <article className="border-b">
@@ -21,7 +20,7 @@ const Accordion = ({ items }) => {
                   </span>
                   <div
                     className="rounded-full border border-grey w-7 h-7 flex items-center justify-center"
-                    onClick={showDetail}
+                    onClick={() => onTitleClicked(index)}
                   >
                     <svg
                       aria-hidden="true"
@@ -42,9 +41,11 @@ const Accordion = ({ items }) => {
                   </div>
                 </header>
                 <div>
-                  <div className="pl-8 pr-8 pb-5 text-grey-darkest">
-                    {item.content}
-                  </div>
+                  {activeItem === index ? (
+                    <div className="pl-8 pr-8 pb-5 text-grey-darkest">
+                      {item.content}
+                    </div>
+                  ) : null}
                 </div>
               </div>
             </article>

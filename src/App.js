@@ -1,4 +1,6 @@
+import React from "react";
 import Accordion from "./components/Accordion";
+import Header from "./components/Header";
 
 const items = [
   {
@@ -20,8 +22,11 @@ const items = [
 
 const App = () => {
   return (
-    <div>
-      <Accordion key={items.id} items={items} />
+    <div className="bg-gray-100 w-full h-screen">
+      <Header />
+      <div className="flex flex-col items-center pt-10">
+        <Accordion key={items.id} items={items} />
+      </div>
     </div>
   );
 };
