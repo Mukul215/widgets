@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const Dropdown = ({ options }) => {
   const [selected, setSelected] = useState(options[0]);
   const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef();
 
   const selectAColor = (color) => {
     setSelected(color);
@@ -11,6 +12,37 @@ const Dropdown = ({ options }) => {
   const dropdownDivider = () => {
     setIsOpen(!isOpen);
   };
+
+  // useEffect for clicking anywhere on the page to close the dropdown
+  useEffect(() => {
+    const onBodyClick = (event) => {
+      if (ref.current.contains(event.target)) {
+        return;
+      }
+      setIsOpen(false);
+    };
+    document.body.addEventListener('click', onBodyClick, { capture: true });
+
+    return () => {
+      document.body.removeEventListener('click', onBodyClick, {
+        capture: true,
+      });
+    };
+
+    // used to listen for clicks anywhere on the page
+    // document.body.addEventListener(
+    //   'click',
+    //   (e) => {
+    //     if (ref.current.contains(e.target)) {
+    //       return;
+    //     }
+    //     setIsOpen(false);
+    //   },
+    //   {
+    //     capture: true,
+    //   }
+    // );
+  }, []);
 
   // map over the options and display them on the page
   const renderedOptions = options.map((option) => {
@@ -32,7 +64,9 @@ const Dropdown = ({ options }) => {
 
   return (
     <>
-      <div className='text-md'>Select A Color:</div>
+      <div ref={ref} className='text-md'>
+        Select A Color:
+      </div>
       <button
         onClick={dropdownDivider}
         className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-9 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
