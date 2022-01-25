@@ -22,26 +22,27 @@ const Search = () => {
       setResults(data.query.search);
     };
 
-    // set timeout to avoid multiple requests
-    const timeoutId = setTimeout(() => {
-      if (searchTerm) {
-        search();
-      }
-    }, 500);
+    if (searchTerm && !results.length) {
+      search();
+    } else {
+      // set timeout to avoid multiple requests
+      const timeoutId = setTimeout(() => {
+        if (searchTerm) {
+          search();
+        }
+      }, 500);
 
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [searchTerm]);
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [searchTerm, results.length]);
 
   // function to handle the search term and render it on page
   const renderedRestults = results.map((result) => {
     return (
-      <ul className='list-reset flex flex-col w-full'>
-        <li
-          className='relative -mb-px block border p-4 border-grey w-full rounded-lg hover:bg-grey-lightest'
-          key={result.pageid}
-        >
+      <ul className='list-reset flex flex-col w-full' key={result.pageid}>
+        <li className='relative -mb-px block border p-4 border-grey w-full rounded-lg hover:bg-grey-lightest'>
           <a
             className='py-2 px-4 mr-2 mb-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 right-2 absolute -mt-2'
             href={`https://en.wikipedia.org?curid=${result.pageid}`}
@@ -76,7 +77,7 @@ const Search = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
               <button
-                className='btn inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-r-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center'
+                className='btn inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-r-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out items-center'
                 type='button'
                 id='button-addon2'
               >
