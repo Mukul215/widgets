@@ -4,29 +4,41 @@ const Dropdown = ({ options }) => {
   const [selected, setSelected] = useState(options[0]);
   const [isOpen, setIsOpen] = useState(false);
 
-  // map over the options and display them on the page
-  const renderedOptions = options.map((option) => {
-    return (
-      <li key={option.value}>
-        <div className='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'>
-          {option.value}
-        </div>
-      </li>
-    );
-  });
+  const selectAColor = (color) => {
+    setSelected(color);
+  };
 
   const dropdownDivider = () => {
     setIsOpen(!isOpen);
   };
 
+  // map over the options and display them on the page
+  const renderedOptions = options.map((option) => {
+    if (option.label === selected.label) {
+      return null;
+    } else {
+      return (
+        <li key={option.value}>
+          <div
+            className='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
+            onClick={() => selectAColor(option)}
+          >
+            {option.value}
+          </div>
+        </li>
+      );
+    }
+  });
+
   return (
     <>
+      <div className='text-md'>Select A Color:</div>
       <button
         onClick={dropdownDivider}
         className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-9 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
         type='button'
       >
-        Select A Color
+        {selected.label}
         <svg
           className='ml-2 w-4 h-4'
           fill='none'
