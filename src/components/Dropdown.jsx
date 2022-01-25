@@ -62,6 +62,16 @@ const Dropdown = ({ options }) => {
     }
   });
 
+  const buttonColor = () => {
+    if (selected.value === 'red') {
+      return 'bg-red-700 hover:bg-red-800';
+    } else if (selected.value === 'blue') {
+      return 'bg-blue-700 hover:bg-blue-800';
+    } else {
+      return 'bg-green-700 hover:bg-green-800';
+    }
+  };
+
   return (
     <>
       <div ref={ref} className='text-md'>
@@ -69,7 +79,8 @@ const Dropdown = ({ options }) => {
       </div>
       <button
         onClick={dropdownDivider}
-        className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-9 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+        // className='text-white bg-blue-700 hover:bg-red-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-9 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+        className={`text-white ${buttonColor()} focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-9 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`}
         type='button'
       >
         {selected.label}
