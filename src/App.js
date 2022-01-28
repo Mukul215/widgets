@@ -3,39 +3,8 @@ import Accordion from './components/Accordion';
 import Dropdown from './components/Dropdown';
 import Header from './components/Header';
 import Search from './components/Search';
-
-const items = [
-  {
-    id: 1,
-    title: 'What is React?',
-    content: 'React is a front end javascript framework',
-  },
-  {
-    id: 2,
-    title: 'Why use React?',
-    content: 'Rreact is a favorite JS library among engineers',
-  },
-  {
-    id: 3,
-    title: 'How do you use React?',
-    content: 'You use React by creating components',
-  },
-];
-
-const options = [
-  {
-    label: 'The Color Red',
-    value: 'red',
-  },
-  {
-    label: 'The Color Green',
-    value: 'green',
-  },
-  {
-    label: 'A Shade of Blue',
-    value: 'blue',
-  },
-];
+import Translate from './components/Translate';
+import { items, options, language } from './helper';
 
 const App = () => {
   return (
@@ -44,7 +13,8 @@ const App = () => {
       <div className='flex flex-col items-center pt-28'>
         {/* <Accordion key={items.id} items={items} /> */}
         {/* <Search /> */}
-        <Dropdown options={options} />
+        {/* <Dropdown options={options} /> */}
+        <Translate options={language} />
       </div>
     </div>
   );

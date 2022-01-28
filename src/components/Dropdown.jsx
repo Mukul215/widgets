@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 
-const Dropdown = ({ options }) => {
+const Dropdown = ({ options, value }) => {
   const [selected, setSelected] = useState(options[0]);
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef();
 
   const selectAColor = (color) => {
     setSelected(color);
+    value(color);
   };
 
   const dropdownDivider = () => {
@@ -63,19 +64,31 @@ const Dropdown = ({ options }) => {
   });
 
   const buttonColor = () => {
-    if (selected.value === 'red') {
+    if (selected.value === 'red' || selected.value === 'af') {
       return 'bg-red-700 hover:bg-red-800';
-    } else if (selected.value === 'blue') {
+    } else if (selected.value === 'blue' || selected.value === 'ar') {
       return 'bg-blue-700 hover:bg-blue-800';
     } else {
       return 'bg-green-700 hover:bg-green-800';
     }
   };
 
+  const buttonText = () => {
+    if (
+      selected.value === 'red' ||
+      selected.value === 'blue' ||
+      selected.value === 'green'
+    ) {
+      return 'Select A Color:';
+    } else {
+      return 'Select A Language:';
+    }
+  };
+
   return (
     <>
       <div ref={ref} className='text-md'>
-        Select A Color:
+        {buttonText()}
       </div>
       <button
         onClick={dropdownDivider}
