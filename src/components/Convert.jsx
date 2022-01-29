@@ -32,7 +32,7 @@ const Convert = ({ selected, text, googleApiKey }) => {
     };
 
     doTranslation();
-  }, [selected, debouncedText]);
+  }, [selected, debouncedText, googleApiKey]);
 
   return (
     <div>
