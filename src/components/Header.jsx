@@ -16,25 +16,25 @@ const Header = () => {
         <div className='w-1/2 block flex-grow justify-center lg:flex items-center lg:items-center lg:w-auto'>
           <div className='text-lg lg:flex-grow'>
             <a
-              href='#responsive-header'
+              href='/'
               className='block mt-4 lg:inline-block lg:mt-0 text-teal-lighter mr-4 text-lg'
             >
               Accordion
             </a>
             <a
-              href='#responsive-header'
+              href='/search'
               className='block mt-4 lg:inline-block lg:mt-0 text-teal-lighter mr-4 text-lg'
             >
-              List
+              Search
             </a>
             <a
-              href='#responsive-header'
+              href='dropdown'
               className='block mt-4 lg:inline-block lg:mt-0 text-teal-lighter mr-4 text-lg'
             >
               Dropdown
             </a>
             <a
-              href='#responsive-header'
+              href='translate'
               className='block mt-4 lg:inline-block lg:mt-0 text-teal-lighter mr-4 text-lg'
             >
               Translate
