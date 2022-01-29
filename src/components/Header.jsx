@@ -1,3 +1,5 @@
+import Link from './Link';
+
 const Header = () => {
   return (
     <div>
@@ -15,30 +17,30 @@ const Header = () => {
         </div>
         <div className='w-1/2 block flex-grow justify-center lg:flex items-center lg:items-center lg:w-auto'>
           <div className='text-lg lg:flex-grow'>
-            <a
+            <Link
               href='/'
               className='block mt-4 lg:inline-block lg:mt-0 text-teal-lighter mr-4 text-lg'
             >
               Accordion
-            </a>
-            <a
+            </Link>
+            <Link
               href='/search'
               className='block mt-4 lg:inline-block lg:mt-0 text-teal-lighter mr-4 text-lg'
             >
               Search
-            </a>
-            <a
+            </Link>
+            <Link
               href='dropdown'
               className='block mt-4 lg:inline-block lg:mt-0 text-teal-lighter mr-4 text-lg'
             >
               Dropdown
-            </a>
-            <a
+            </Link>
+            <Link
               href='translate'
               className='block mt-4 lg:inline-block lg:mt-0 text-teal-lighter mr-4 text-lg'
             >
               Translate
-            </a>
+            </Link>
           </div>
         </div>
       </nav>
